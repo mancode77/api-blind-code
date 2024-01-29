@@ -18,6 +18,8 @@ mysqlConnection.connect((err) => {
   console.log("Connected to database");
 });
 
+app.get('/', (req, res) => res.status(200).send('Selamat datang di API api-blind-code'))
+
 // Registrasi
 app.post("/register", (req, res) => {
   const { username, password } = req.body;
