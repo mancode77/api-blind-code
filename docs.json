@@ -62,7 +62,7 @@
                 "jhon": {
                   "description": "Example Sign In user",
                   "value": {
-                    "name": "jhon",
+                    "username": "jhon",
                     "password": "doe"
                   }
                 }
@@ -82,7 +82,7 @@
                   "jhon": {
                     "description": "Success Sign In user",
                     "value": {
-                      "name": "jhon",
+                      "username": "jhon",
                       "password": "ashdjj8745uyiery7JVd$^"
                     }
                   }
@@ -109,7 +109,7 @@
                 "jhon": {
                   "description": "Example Sign Up user",
                   "value": {
-                    "name": "jhon",
+                    "username": "jhon",
                     "password": "doe"
                   }
                 }
@@ -129,7 +129,7 @@
                   "jhon": {
                     "description": "Success Sign Up user",
                     "value": {
-                      "name": "jhon",
+                      "username": "jhon",
                       "password": "ashdjj8745uyiery7JVd$^"
                     }
                   }
