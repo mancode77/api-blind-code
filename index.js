@@ -2,12 +2,21 @@ import mysqlConnection from "./db-connection.js";
 import express from "express";
 import bodyParser from "body-parser";
 import bcrypt from "bcrypt";
+import cors from "cors";
 
-const app = express();
+let isInstance = false;
+let app;
+
 const port = 3000;
+
+if (!isInstance) {
+  app = express();
+  isInstance = true;
+}
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors())
 
 // Koneksi database Mysql
 mysqlConnection.connect((err) => {
