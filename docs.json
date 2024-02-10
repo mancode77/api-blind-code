@@ -1,0 +1,161 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Code Blind RESTful API",
+    "version": "1",
+    "description": "OpenAPI for Code Blind API RESTful API",
+    "termsOfService": "https://mancode77.github.io/frontend-dev-portofolio/",
+    "contact": {
+      "name": "Aji Maulana",
+      "email": "aji658911@gmail.com",
+      "url": "https://mancode77.github.io/frontend-dev-portofolio/"
+    },
+    "license": {
+      "       ": "APACHE 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "servers": [
+    {
+      "description": "Code Blind RESTful API Server",
+      "url": "https://api-blind-code.vercel.app"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": ["Intoruction"],
+        "summary": "Get introduction API Code Blind",
+        "responses": {
+          "200": {
+            "description": "Success get introduction API Code Blind",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "success": {
+                    "description": "Example success get introduction API Code Blind",
+                    "value": "Selamat datang di API api-blind-code"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": ["Login"],
+        "summary": " user",
+        "description": "Sign In user to database",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/loginOrRegister"
+              },
+              "examples": {
+                "jhon": {
+                  "description": "Example Sign In user",
+                  "value": {
+                    "username": "jhon",
+                    "password": "doe"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success Sign In user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loginOrRegister"
+                },
+                "examples": {
+                  "jhon": {
+                    "description": "Success Sign In user",
+                    "value": {
+                      "username": "jhon",
+                      "password": "ashdjj8745uyiery7JVd$^"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/register": {
+      "post": {
+        "tags": ["Register"],
+        "summary": "Sign Up user",
+        "description": "Sign Up user to database",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/loginOrRegister"
+              },
+              "examples": {
+                "jhon": {
+                  "description": "Example Sign Up user",
+                  "value": {
+                    "username": "jhon",
+                    "password": "doe"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success Sign Up user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loginOrRegister"
+                },
+                "examples": {
+                  "jhon": {
+                    "description": "Success Sign Up user",
+                    "value": {
+                      "username": "jhon",
+                      "password": "ashdjj8745uyiery7JVd$^"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "loginOrRegister": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 255
+          }
+        }
+      }
+    }
+  }
+}

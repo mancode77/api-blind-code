@@ -67,6 +67,25 @@ Kemudian, run projectnya
 nodemon .
 ```
 
+# Akses Endpoint
+
+Pertama install extention di Visual Studio Code yang bernama THUNDER CLIENT.
+
+### Endpoint / - Method GET
+```bash
+https://api-blind-code.vercel.app/
+```
+
+### Endpoint /register - Method POST
+```bash
+https://api-blind-code.vercel.app/register
+```
+
+### Endpoint /login - Method POST
+```bash
+https://api-blind-code.vercel.app/login
+```
+
 ## Terima Kasih
 
 Terima kasih kepada semua kontributor yang telah membantu membuat proyek ini menjadi lebih baik! 🙌
