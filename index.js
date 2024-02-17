@@ -56,6 +56,8 @@ function registerUser(req, res) {
 
     const query = "INSERT INTO users (username, password) VALUES (?, ?)";
     mysqlConnection.query(query, [username, hash], (err, result) => {
+      setLoginCookie(res, username);
+
       if (err) {
         console.error("Error registering user:", err);
         res.status(500).send("Error registering user");
