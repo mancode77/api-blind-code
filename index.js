@@ -2,7 +2,6 @@ import express from "express";
 import bodyParser from "body-parser";
 import bcrypt from "bcrypt";
 import cors from "cors";
-import cookieParser from "cookie-parser";
 import mysqlConnection from "./db-connection.js";
 
 const app = express();
@@ -11,7 +10,6 @@ const port = 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-app.use(cookieParser());
 
 mysqlConnection.connect((err) => {
   if (err) {
@@ -56,7 +54,6 @@ function registerUser(req, res) {
 
     const query = "INSERT INTO users (username, password) VALUES (?, ?)";
     mysqlConnection.query(query, [username, hash], (err, result) => {
-      setLoginCookie(res, username);
 
       if (err) {
         console.error("Error registering user:", err);
@@ -78,7 +75,6 @@ async function loginUser(req, res) {
     if (results.length > 0) {
       const match = await bcrypt.compare(password, results[0].password);
       if (match) {
-        setLoginCookie(res, username);
         res.status(200).send("Login successful");
       } else {
         res.status(401).send("Incorrect password");
@@ -92,16 +88,6 @@ async function loginUser(req, res) {
   }
 }
 
-function setLoginCookie(res, username) {
-  if (!res.cookies.key) {
-    res.cookie("key", username, {
-      maxAge: 604800000, // 7 hari dalam milidetik
-      expires: new Date(Date.now() + 604800000), // 7 hari dari sekarang
-      secure: true, // Hanya dapat diakses melalui HTTPS,
-      path: "/",
-    });
-  }
-}
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
