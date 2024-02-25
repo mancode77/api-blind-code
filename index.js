@@ -9,7 +9,7 @@ const port = 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({ origin: "*" }));
 
 mysqlConnection.connect((err) => {
   if (err) {
@@ -54,7 +54,6 @@ function registerUser(req, res) {
 
     const query = "INSERT INTO users (username, password) VALUES (?, ?)";
     mysqlConnection.query(query, [username, hash], (err, result) => {
-
       if (err) {
         console.error("Error registering user:", err);
         res.status(500).send("Error registering user");
@@ -87,7 +86,6 @@ async function loginUser(req, res) {
     res.status(500).send("Internal Server Error");
   }
 }
-
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
