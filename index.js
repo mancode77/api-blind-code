@@ -69,18 +69,25 @@ async function loginUser(req, res) {
 
   try {
     const query = "SELECT * FROM users WHERE username = ?";
-    const results = await mysqlConnection.query(query, [username]);
 
-    if (results.length > 0) {
-      const match = await bcrypt.compare(password, results[0].password);
-      if (match) {
-        res.status(200).send("Login successful");
-      } else {
-        res.status(401).send("Incorrect password");
+    mysqlConnection.query(query, [username], async (err, results) => {
+      if (err) {
+        console.error("Error registering user:", err);
+        res.status(500).send("Error registering user");
+        return;
       }
-    } else {
-      res.status(401).send("User not found");
-    }
+
+      if (results.length > 0) {
+        const match = await bcrypt.compare(password, results[0].password);
+        if (match) {
+          res.status(200).send("Login successful");
+        } else {
+          res.status(401).send("Incorrect password");
+        }
+      } else {
+        res.status(401).send("User not found");
+      }
+    });
   } catch (error) {
     console.error("Error querying database or comparing passwords:", error);
     res.status(500).send("Internal Server Error");
